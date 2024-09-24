@@ -1,0 +1,134 @@
+[gd_scene load_steps=15 format=3 uid="uid://cw8kf7p042h85"]
+
+[ext_resource type="Texture2D" uid="uid://c14kf7so4tams" path="res://icon.svg" id="1_i7o7u"]
+[ext_resource type="Script" path="res://attack_button.gd" id="2_ato11"]
+
+[sub_resource type="Gradient" id="Gradient_6tnoc"]
+colors = PackedColorArray(0.0923971, 0.0923971, 0.0923971, 1, 0, 0.0337441, 0.073117, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ph1kh"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ykyrl"]
+width = 1200
+height = 700
+color_ramp = SubResource("Gradient_6tnoc")
+noise = SubResource("FastNoiseLite_ph1kh")
+
+[sub_resource type="Gradient" id="Gradient_gf13j"]
+colors = PackedColorArray(0.313549, 0.1682, 0, 1, 0.253953, 0.116835, 0.00474859, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_an202"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_a71r7"]
+width = 1200
+height = 200
+color_ramp = SubResource("Gradient_gf13j")
+noise = SubResource("FastNoiseLite_an202")
+
+[sub_resource type="Gradient" id="Gradient_6e85w"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_74hqj"]
+gradient = SubResource("Gradient_6e85w")
+
+[sub_resource type="Gradient" id="Gradient_oa7b7"]
+colors = PackedColorArray(0, 0, 0, 1, 0.493225, 0, 0.199168, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ur0mv"]
+gradient = SubResource("Gradient_oa7b7")
+width = 200
+height = 32
+
+[sub_resource type="Gradient" id="Gradient_bbav6"]
+colors = PackedColorArray(0, 0.412742, 0.250074, 1, 1.15514e-06, 0.532449, 0.269833, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_dncld"]
+gradient = SubResource("Gradient_bbav6")
+width = 200
+height = 32
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("NoiseTexture2D_ykyrl")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(0, 250)
+texture = SubResource("NoiseTexture2D_a71r7")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+position = Vector2(552, -309)
+texture = SubResource("GradientTexture2D_74hqj")
+
+[node name="Player" type="Sprite2D" parent="."]
+position = Vector2(-343, 88)
+texture = ExtResource("1_i7o7u")
+
+[node name="Enemy" type="Sprite2D" parent="."]
+position = Vector2(379, 89)
+texture = ExtResource("1_i7o7u")
+
+[node name="AttackButton" type="Button" parent="."]
+offset_left = 21.0
+offset_top = 171.0
+offset_right = 93.0
+offset_bottom = 232.0
+text = "Attack"
+script = ExtResource("2_ato11")
+
+[node name="ATTACK_DELAY" type="Timer" parent="."]
+
+[node name="PlayerHealthBar" type="TextureProgressBar" parent="."]
+offset_left = -442.0
+offset_top = 227.0
+offset_right = -242.0
+offset_bottom = 259.0
+max_value = 640.0
+value = 640.0
+texture_under = SubResource("GradientTexture2D_ur0mv")
+texture_progress = SubResource("GradientTexture2D_dncld")
+
+[node name="PlayerHP" type="Label" parent="."]
+offset_left = -536.0
+offset_top = 231.0
+offset_right = -496.0
+offset_bottom = 254.0
+text = "HP: "
+
+[node name="EnemyHealthBar" type="TextureProgressBar" parent="."]
+offset_left = 276.0
+offset_top = -202.0
+offset_right = 476.0
+offset_bottom = -170.0
+max_value = 640.0
+value = 640.0
+texture_under = SubResource("GradientTexture2D_ur0mv")
+texture_progress = SubResource("GradientTexture2D_dncld")
+
+[node name="EnemyHP" type="Label" parent="."]
+offset_left = 182.0
+offset_top = -198.0
+offset_right = 222.0
+offset_bottom = -175.0
+text = "HP: "
+
+[node name="GameOverPanel" type="Panel" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TryAgainButton" type="Button" parent="GameOverPanel"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Try again?"
